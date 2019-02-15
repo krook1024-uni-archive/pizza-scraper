@@ -1,122 +1,122 @@
 28,1350,Gino,Különc
-28,2590,Gino,Különc
+45,2590,Gino,Különc
 28,1320,Gino,Tarajos
-28,2710,Gino,Tarajos
+45,2710,Gino,Tarajos
 28,1390,Gino,Ínyenc
-28,2890,Gino,Ínyenc
+45,2890,Gino,Ínyenc
 28,1360,Gino,Apollo
-28,2820,Gino,Apollo
+45,2820,Gino,Apollo
 28,1290,Gino,Olíva
-28,2650,Gino,Olíva
+45,2650,Gino,Olíva
 28,1240,Gino,Guliver
-28,2550,Gino,Guliver
+45,2550,Gino,Guliver
 28,970,Gino,Margaréta
-28,2170,Gino,Margaréta
+45,2170,Gino,Margaréta
 28,970,Gino,Kukori
-28,2170,Gino,Kukori
+45,2170,Gino,Kukori
 28,1090,Gino,Sonkás
-28,2270,Gino,Sonkás
+45,2270,Gino,Sonkás
 28,1160,Gino,Szalámis
-28,2320,Gino,Szalámis
+45,2320,Gino,Szalámis
 28,1090,Gino,Gombás
-28,2320,Gino,Gombás
+45,2320,Gino,Gombás
 28,1190,Gino,Sonkás- Szalámis
-28,2470,Gino,Sonkás- Szalámis
+45,2470,Gino,Sonkás- Szalámis
 28,1140,Gino,Sonkás- Gombás
-28,2430,Gino,Sonkás- Gombás
+45,2430,Gino,Sonkás- Gombás
 28,1140,Gino,Sonkás- Kukoricás
-28,2430,Gino,Sonkás- Kukoricás
+45,2430,Gino,Sonkás- Kukoricás
 28,1160,Gino,Trópusi vihar
-28,2450,Gino,Trópusi vihar
+45,2450,Gino,Trópusi vihar
 28,1140,Gino,Kerti Zöldséges
-28,2420,Gino,Kerti Zöldséges
+45,2420,Gino,Kerti Zöldséges
 28,1220,Gino,Magyaros
-28,2540,Gino,Magyaros
+45,2540,Gino,Magyaros
 28,1220,Gino,Major
-28,2490,Gino,Major
+45,2490,Gino,Major
 28,1350,Gino,Texas Holdem
-28,2750,Gino,Texas Holdem
+45,2750,Gino,Texas Holdem
 28,1220,Gino,Kocsis
-28,2540,Gino,Kocsis
+45,2540,Gino,Kocsis
 28,1220,Gino,Csilis
-28,2540,Gino,Csilis
+45,2540,Gino,Csilis
 28,1290,Gino,Pedro
-28,2690,Gino,Pedro
+45,2690,Gino,Pedro
 28,1230,Gino,Bolognai
-28,2590,Gino,Bolognai
+45,2590,Gino,Bolognai
 28,1240,Gino,Tarjás
-28,2650,Gino,Tarjás
+45,2650,Gino,Tarjás
 28,1310,Gino,Füstös
-28,2750,Gino,Füstös
+45,2750,Gino,Füstös
 28,1180,Gino,Son.go.han
-28,2470,Gino,Son.go.han
+45,2470,Gino,Son.go.han
 28,1160,Gino,Son.go.ku
-28,2470,Gino,Son.go.ku
+45,2470,Gino,Son.go.ku
 28,1160,Gino,Hawaii
-28,2450,Gino,Hawaii
+45,2450,Gino,Hawaii
 28,1290,Gino,Brassói
-28,2640,Gino,Brassói
+45,2640,Gino,Brassói
 28,1210,Gino,Pepperóni
-28,2550,Gino,Pepperóni
+45,2550,Gino,Pepperóni
 28,1210,Gino,Sajtimádó
-28,2550,Gino,Sajtimádó
+45,2550,Gino,Sajtimádó
 28,1220,Gino,Berlin
-28,2550,Gino,Berlin
+45,2550,Gino,Berlin
 28,1180,Gino,Casino
-28,2470,Gino,Casino
+45,2470,Gino,Casino
 28,1240,Gino,Négy évszak
-28,2650,Gino,Négy évszak
+45,2650,Gino,Négy évszak
 28,1240,Gino,Gino
-28,2650,Gino,Gino
+45,2650,Gino,Gino
 28,1470,Gino,Yo Neked
-28,3090,Gino,Yo Neked
+45,3090,Gino,Yo Neked
 28,1270,Gino,Gyrosos
-28,2650,Gino,Gyrosos
+45,2650,Gino,Gyrosos
 28,1370,Gino,Donna Maria
-28,2890,Gino,Donna Maria
+45,2890,Gino,Donna Maria
 28,1340,Gino,Hústorony
-28,2740,Gino,Hústorony
+45,2740,Gino,Hústorony
 28,1210,Gino,Mybecool
-28,2590,Gino,Mybecool
+45,2590,Gino,Mybecool
 28,1390,Gino,Csípős pizza
-28,2990,Gino,Csípős pizza
+45,2990,Gino,Csípős pizza
 28,1230,Gino,Parasztos
-28,2590,Gino,Parasztos
+45,2590,Gino,Parasztos
 28,1220,Gino,Sárkány
-28,2540,Gino,Sárkány
+45,2540,Gino,Sárkány
 28,1180,Gino,Kalória
-28,2450,Gino,Kalória
+45,2450,Gino,Kalória
 28,1290,Gino,Török
-28,2690,Gino,Török
+45,2690,Gino,Török
 28,1190,Gino,Don Papa
-28,2450,Gino,Don Papa
+45,2450,Gino,Don Papa
 28,1190,Gino,Vegetáriánus
-28,2450,Gino,Vegetáriánus
+45,2450,Gino,Vegetáriánus
 28,1200,Gino,Fokhagymás-tejfölös
-28,2540,Gino,Fokhagymás-tejfölös
+45,2540,Gino,Fokhagymás-tejfölös
 28,1340,Gino,Bud Spencer
-28,2720,Gino,Bud Spencer
+45,2720,Gino,Bud Spencer
 28,1270,Gino,Boss
-28,2690,Gino,Boss
+45,2690,Gino,Boss
 28,1270,Gino,Csirkés tejfölös
-28,2690,Gino,Csirkés tejfölös
+45,2690,Gino,Csirkés tejfölös
 28,1370,Gino,Éhenkórász
-28,2890,Gino,Éhenkórász
+45,2890,Gino,Éhenkórász
 28,1310,Gino,Colorado
-28,2750,Gino,Colorado
+45,2750,Gino,Colorado
 28,1370,Gino,Herkules
-28,2890,Gino,Herkules
+45,2890,Gino,Herkules
 28,1350,Gino,Hannah Montana
-28,2790,Gino,Hannah Montana
+45,2790,Gino,Hannah Montana
 28,1390,Gino,Tenger gyümölcse
-28,2890,Gino,Tenger gyümölcse
+45,2890,Gino,Tenger gyümölcse
 28,1390,Gino,Futárok kedvence
-28,2890,Gino,Futárok kedvence
+45,2890,Gino,Futárok kedvence
 28,1370,Gino,Vámpír
-28,2890,Gino,Vámpír
+45,2890,Gino,Vámpír
 28,1390,Gino,Keresztapa
-28,2890,Gino,Keresztapa
+45,2890,Gino,Keresztapa
 28,1350,Gino,Zeusz
-28,2790,Gino,Zeusz
+45,2790,Gino,Zeusz
 28,1390,Gino,Kívánság pizza  
-28,2850,Gino,Kívánság pizza  
+45,2850,Gino,Kívánság pizza  

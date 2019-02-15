@@ -77,13 +77,14 @@ def warningDialog(text):
 # about a pizza to a text file.
 def writeDataToFile(filename, pizzaname, diameter, vendor, price):
     with open(filename, 'a') as file:
-            file.write("28,")
-            file.write(str(price))
-            file.write(",")
-            file.write(vendor)
-            file.write(",")
-            file.write(pizzaname)
-            file.write("\n")
+        file.write(str(diameter))
+        file.write(",")
+        file.write(str(price))
+        file.write(",")
+        file.write(vendor)
+        file.write(",")
+        file.write(pizzaname)
+        file.write("\n")
 
 # getGino() ~ this functions tries to parse ginopizza.hu to get pizza prices and names
 def getGino():
@@ -128,7 +129,7 @@ def getGino():
                         price_45 = int(m.group(0))
 
             writeDataToFile("gino.txt", name, "28", "Gino", price_28)
-            writeDataToFile("gino.txt", name, "48", "Gino", price_45)
+            writeDataToFile("gino.txt", name, "45", "Gino", price_45)
         info("gino.txt written.")
 
     else:
