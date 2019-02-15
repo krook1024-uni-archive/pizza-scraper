@@ -12,7 +12,7 @@ from contextlib import closing
 from bs4        import BeautifulSoup
 
 program_name    = "pizza scraper"
-program_ver     = "0.0.1"
+program_ver     = "0.0.2"
 
 # Basic web scraping based on the following tutorial (as of 15/02/2018):
 # https://realpython.com/python-web-scraping-practical-introduction/
@@ -30,7 +30,7 @@ def simple_get(url):
                 return None
 
     except RequestException as e:
-        log_error('Error during requests to {0} : {1}'.format(url, str(e)))
+        log_error("Error during requests to {0} : {1}".format(url, str(e)))
         return None
 
 
@@ -59,7 +59,7 @@ def info(text):
     print("INFO:", text)
 
 # Self explanatory.
-def err(Text):
+def err(text):
     print("ERROR:", text)
 
 # This function shows a simple yes-or-no dialog.
@@ -73,10 +73,14 @@ def warningDialog(text):
     else:
         return False
 
+def deleteWithWarning(filename):
+    if warningDialog("remove the old %s?".replace("%s", filename)) and os.path.exists(filename):
+            os.remove(filename)
+
 # writeDataToFile(...) ~ This function attempts to write the data collected
 # about a pizza to a text file.
 def writeDataToFile(filename, pizzaname, diameter, vendor, price):
-    with open(filename, 'a') as file:
+    with open(filename, "a") as file:
         file.write(str(diameter))
         file.write(",")
         file.write(str(price))
@@ -94,15 +98,15 @@ def getGino():
 
     if(len(raw_html) > 0):
         # Delete "gino.txt" if we have one and the user chose to
-        if warningDialog("remove the old gino.txt?") and os.path.exists("gino.txt"):
-            os.remove("gino.txt")
+        deleteWithWarning("gino.txt")
 
         # Actually parse the site
         # The data is contained in a table so we parse every row and column
         # to mine what we need.
-        html = BeautifulSoup(raw_html, 'html.parser')
-        for i, tr in enumerate(html.select('tr')):
+        html = BeautifulSoup(raw_html, "html.parser")
+        for i, tr in enumerate(html.select("tr")):
             name = ""
+            # Ginopizza offers 28 and 45 cm pizzas, hence why the two variables
             price_28 = 0
             price_45 = 0
 
@@ -110,26 +114,15 @@ def getGino():
             if(i == 0):
                 continue
 
-            for j, td in enumerate(tr.select('td')):
-                if(j == 0):
-                    tmp = td.text
-                    name = re.sub(
-                            r"(.*)\((.*)\)",
-                            r"\1",
-                            tmp)
-                else:
-                    if(j == 2):
-                        tmp = td.text
-                        m = re.search("[0-9]{3,4}", tmp)
-                        price_28 = int(m.group(0))
+            tds = tr.select("td")
 
-                    if(j == 3):
-                        tmp = td.text
-                        m = re.search("[0-9]{3,4}", tmp)
-                        price_45 = int(m.group(0))
+            name = re.sub(r"(.*)\((.*)\)", r"\1", tds[0].text)
+            price_28 = re.search("[0-9]{3,4}", tds[2].text).group(0)
+            price_45 = re.search("[0-9]{3,4}", tds[3].text).group(0)
 
             writeDataToFile("gino.txt", name, "28", "Gino", price_28)
             writeDataToFile("gino.txt", name, "45", "Gino", price_45)
+
         info("gino.txt written.")
 
     else:
@@ -147,31 +140,24 @@ def getKerekes():
     raw_html = simple_get("http://www.kerekespizza.hu/index.php")
 
     if(len(raw_html) > 0):
-        if warningDialog("remove the old kerekes.txt?") and os.path.exists("kerekes.txt"):
-            os.remove("kerekes.txt")
+        deleteWithWarning("kerekes.txt")
 
-        html = BeautifulSoup(raw_html, 'html.parser')
+        html = BeautifulSoup(raw_html, "html.parser")
 
         name = ""
         price = 0
 
-        for i, div in enumerate(html.select('div.etel-kategoria')):
+        for i, div in enumerate(html.select("div.etel-kategoria")):
             if(i == 1):
-                for j, food in enumerate(div.select('div.etlap_wrap_table')):
-                    name = food.select('span.etelnev_table')[0].text
-                    price_tmp = food.select('div.ar_table')[0].text
-
-                    price = re.sub(
-                                    r"([0-9]{3,4})Ft",
+                for j, food in enumerate(div.select("div.etlap_wrap_table")):
+                    name = food.select("span.etelnev_table")[0].text
+                    price = re.sub( r"([0-9]{3,4})Ft",
                                     r"\1",
-                                    price_tmp.replace(" ", ""))
-
+                                    food.select("div.ar_table")[0].text.replace(" ", ""))
                     writeDataToFile("kerekes.txt", name, "28", "Kerekes", price)
-
             else:
                 continue
         info("kerekes.txt written.")
-
     else:
         err("Failed to scrape kerekespizza.hu")
 
@@ -182,18 +168,17 @@ def getPecsi():
     raw_html = simple_get("http://pecsenyesarok.hu/pizzak")
 
     if(len(raw_html) > 0):
-        if(warningDialog("remove the old pecsenye.txt?") and os.path.exists("pecsenye.txt")):
-            os.remove("pecsenye.txt")
+        deleteWithWarning("pecsenye.txt")
 
-        html = BeautifulSoup(raw_html, 'html.parser')
+        html = BeautifulSoup(raw_html, "html.parser")
         name = ""
         price = 0
 
-        for i, tr in enumerate(html.select('tr')):
+        for i, tr in enumerate(html.select("tr")):
             if(i < 1 or i > 38):
                 continue
-            name = tr.select('h4')[0].text
-            price = tr.select('td')[1].text.replace(" ", "")
+            name = tr.select("h4")[0].text
+            price = tr.select("td")[1].text.replace(" ", "")
             price = re.sub(r"([0-9]{3,4})Ft", r"\1", price)
             writeDataToFile("pecsenye.txt", name, 30, "Pecsenye", price)
 
@@ -204,7 +189,7 @@ def getPecsi():
 
 # Main
 def main():
-    print("Welcome to ", program_name, " v", program_ver, ".", sep='')
+    print("Welcome to ", program_name, " v", program_ver, ".", sep="")
     print()
 
     getGino()
