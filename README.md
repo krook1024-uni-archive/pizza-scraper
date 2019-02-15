@@ -8,4 +8,4 @@ no machine-learning like stuff. This is needed for an other repo of mine.
 
 Screenshot of the program in action.
 
-![](screen.png)
+![The program in action](screen.png)
