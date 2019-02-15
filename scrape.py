@@ -54,12 +54,15 @@ def log_error(e):
 
 # ----------------------------------------------------------------------
 
+# Self explanatory.
 def info(text):
     print("INFO:", text)
 
+# Self explanatory.
 def err(Text):
     print("ERROR:", text)
 
+# This function shows a simple yes-or-no dialog.
 def warningDialog(text):
     print("WARNING: Are you sure you want to", text, "(y/n)")
 
@@ -70,6 +73,17 @@ def warningDialog(text):
     else:
         return False
 
+# writeDataToFile(...) ~ This function attempts to write the data collected
+# about a pizza to a text file.
+def writeDataToFile(filename, pizzaname, diameter, vendor, price):
+    with open(filename, 'a') as file:
+            file.write("28,")
+            file.write(str(price))
+            file.write(",")
+            file.write(vendor)
+            file.write(",")
+            file.write(pizzaname)
+            file.write("\n")
 
 # getGino() ~ this functions tries to parse ginopizza.hu to get pizza prices and names
 def getGino():
@@ -113,18 +127,8 @@ def getGino():
                         m = re.search("[0-9]{3,4}", tmp)
                         price_45 = int(m.group(0))
 
-            with open('gino.txt', 'a') as gino_file:
-                gino_file.write("28,")
-                gino_file.write(str(price_28))
-                gino_file.write(",Gino,")
-                gino_file.write(name)
-                gino_file.write("\n")
-
-                gino_file.write("45,")
-                gino_file.write(str(price_45))
-                gino_file.write(",Gino,")
-                gino_file.write(name)
-                gino_file.write("\n")
+            writeDataToFile("gino.txt", name, "28", "Gino", price_28)
+            writeDataToFile("gino.txt", name, "48", "Gino", price_45)
         info("gino.txt written.")
 
     else:
@@ -132,22 +136,12 @@ def getGino():
 
 # getSziget() ~ This function tries to scrape szigetelbar.hu
 def getSziget():
-    """
-    print("Trying to scrape szigetelbar.hu")
-    raw_html = simple_get("http://szigetetelbar.hu/index.php/pizza")
-
-    if(len(raw_html) > 0):
-        html = BeautifulSoup(raw_html, 'html.parser')
-        print(html)
-    else:
-        print("Failed to scrape szigetetelbar.hu")
-    """
     # Pass for now as there is an error occuring when doing simple_get(...)
     pass
 
 # getKerekes() ~ This function tries to parse kerekespizza.hu for offers
 def getKerekes():
-    print("Trying to scrape kerekespizza.hu")
+    info("Trying to scrape kerekespizza.hu")
 
     raw_html = simple_get("http://www.kerekespizza.hu/index.php")
 
@@ -171,13 +165,7 @@ def getKerekes():
                                     r"\1",
                                     price_tmp.replace(" ", ""))
 
-                    with open('kerekes.txt', 'a') as file:
-                        file.write("28,")
-                        file.write(price)
-                        file.write(",Kerekes,")
-                        file.write(name)
-                        file.write("\n")
-
+                    writeDataToFile("kerekes.txt", name, "28", "Kerekes", price)
 
             else:
                 continue
@@ -186,6 +174,32 @@ def getKerekes():
     else:
         err("Failed to scrape kerekespizza.hu")
 
+def getPecsi():
+    # http://pecsenyesarok.hu/pizzak
+    info("Trying to scrape pecsenyesarok.hu")
+
+    raw_html = simple_get("http://pecsenyesarok.hu/pizzak")
+
+    if(len(raw_html) > 0):
+        if(warningDialog("remove the old pecsenye.txt?") and os.path.exists("pecsenye.txt")):
+            os.remove("pecsenye.txt")
+
+        html = BeautifulSoup(raw_html, 'html.parser')
+        name = ""
+        price = 0
+
+        for i, tr in enumerate(html.select('tr')):
+            if(i < 1 or i > 38):
+                continue
+            name = tr.select('h4')[0].text
+            price = tr.select('td')[1].text.replace(" ", "")
+            price = re.sub(r"([0-9]{3,4})Ft", r"\1", price)
+            writeDataToFile("pecsenye.txt", name, 30, "Pecsenye", price)
+
+        info("pecsenye.txt written.")
+
+    else:
+        err("Failed to scrape pecsenyesarok.hu")
 
 # Main
 def main():
@@ -193,7 +207,7 @@ def main():
     print()
 
     getGino()
-    # getSziget()
     getKerekes()
+    getPecsi()
 
 main()
