@@ -5,11 +5,11 @@
 
 import re
 import os
-from getkey import getkey, keys
-from requests import get
-from requests import RequestException
+from getkey     import getkey, keys
+from requests   import get
+from requests   import RequestException
 from contextlib import closing
-from bs4 import BeautifulSoup
+from bs4        import BeautifulSoup
 
 program_name    = "pizza scraper"
 program_ver     = "0.0.1"
@@ -52,6 +52,14 @@ def log_error(e):
     """
     print(e)
 
+# ----------------------------------------------------------------------
+
+def info(text):
+    print("INFO:", text)
+
+def err(Text):
+    print("ERROR:", text)
+
 def warningDialog(text):
     print("WARNING: Are you sure you want to", text, "(y/n)")
 
@@ -65,16 +73,18 @@ def warningDialog(text):
 
 # getGino() ~ this functions tries to parse ginopizza.hu to get pizza prices and names
 def getGino():
-    print("Trying to scrape ginopizza.hu...")
+    info("Trying to scrape ginopizza.hu...")
 
     raw_html = simple_get("http://www.ginopizza.hu/index.php?option=com_content&view=article&id=13:vekony-tesztas-pizza&catid=8:menu")
 
     if(len(raw_html) > 0):
-        # Delete "gino.txt" if we have one
+        # Delete "gino.txt" if we have one and the user chose to
         if warningDialog("remove the old gino.txt?") and os.path.exists("gino.txt"):
             os.remove("gino.txt")
 
         # Actually parse the site
+        # The data is contained in a table so we parse every row and column
+        # to mine what we need.
         html = BeautifulSoup(raw_html, 'html.parser')
         for i, tr in enumerate(html.select('tr')):
             name = ""
@@ -103,8 +113,6 @@ def getGino():
                         m = re.search("[0-9]{3,4}", tmp)
                         price_45 = int(m.group(0))
 
-            print("ADAT:", name, price_28, price_45)
-
             with open('gino.txt', 'a') as gino_file:
                 gino_file.write("28,")
                 gino_file.write(str(price_28))
@@ -117,24 +125,66 @@ def getGino():
                 gino_file.write(",Gino,")
                 gino_file.write(name)
                 gino_file.write("\n")
+        info("gino.txt written.")
 
     else:
-        print("Failed to scrape ginopizza.hu...")
+        err("Failed to scrape ginopizza.hu...")
 
-# getszieg() ~ This function tries to scrape szigetelbar.hu
+# getSziget() ~ This function tries to scrape szigetelbar.hu
 def getSziget():
     """
     print("Trying to scrape szigetelbar.hu")
     raw_html = simple_get("http://szigetetelbar.hu/index.php/pizza")
 
     if(len(raw_html) > 0):
-        html = BeautifulSoup('html.parser', raw_html)
+        html = BeautifulSoup(raw_html, 'html.parser')
         print(html)
     else:
         print("Failed to scrape szigetetelbar.hu")
     """
     # Pass for now as there is an error occuring when doing simple_get(...)
     pass
+
+# getKerekes() ~ This function tries to parse kerekespizza.hu for offers
+def getKerekes():
+    print("Trying to scrape kerekespizza.hu")
+
+    raw_html = simple_get("http://www.kerekespizza.hu/index.php")
+
+    if(len(raw_html) > 0):
+        if warningDialog("remove the old kerekes.txt?") and os.path.exists("kerekes.txt"):
+            os.remove("kerekes.txt")
+
+        html = BeautifulSoup(raw_html, 'html.parser')
+
+        name = ""
+        price = 0
+
+        for i, div in enumerate(html.select('div.etel-kategoria')):
+            if(i == 1):
+                for j, food in enumerate(div.select('div.etlap_wrap_table')):
+                    name = food.select('span.etelnev_table')[0].text
+                    price_tmp = food.select('div.ar_table')[0].text
+
+                    price = re.sub(
+                                    r"([0-9]{3,4})Ft",
+                                    r"\1",
+                                    price_tmp.replace(" ", ""))
+
+                    with open('kerekes.txt', 'a') as file:
+                        file.write("28,")
+                        file.write(price)
+                        file.write(",Kerekes,")
+                        file.write(name)
+                        file.write("\n")
+
+
+            else:
+                continue
+        info("kerekes.txt written.")
+
+    else:
+        err("Failed to scrape kerekespizza.hu")
 
 
 # Main
@@ -143,6 +193,7 @@ def main():
     print()
 
     getGino()
-    getSziget()
+    # getSziget()
+    getKerekes()
 
 main()
