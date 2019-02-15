@@ -5,6 +5,7 @@
 
 import re
 import os
+from getkey import getkey, keys
 from requests import get
 from requests import RequestException
 from contextlib import closing
@@ -51,6 +52,17 @@ def log_error(e):
     """
     print(e)
 
+def warningDialog(text):
+    print("WARNING: Are you sure you want to", text, "(y/n)")
+
+    key = getkey()
+
+    if key == 'y' or key == 'Y' or key == '\n':
+        return True
+    else:
+        return False
+
+
 # getGino() ~ this functions tries to parse ginopizza.hu to get pizza prices and names
 def getGino():
     print("Trying to scrape ginopizza.hu...")
@@ -59,7 +71,7 @@ def getGino():
 
     if(len(raw_html) > 0):
         # Delete "gino.txt" if we have one
-        if os.path.exists("gino.txt"):
+        if warningDialog("remove the old gino.txt?") and os.path.exists("gino.txt"):
             os.remove("gino.txt")
 
         # Actually parse the site
