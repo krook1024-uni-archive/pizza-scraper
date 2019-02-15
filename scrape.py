@@ -65,7 +65,6 @@ def getGino():
         # Actually parse the site
         html = BeautifulSoup(raw_html, 'html.parser')
         for i, tr in enumerate(html.select('tr')):
-            print("--->", i, ":")
             name = ""
             price_28 = 0
             price_45 = 0
@@ -110,6 +109,21 @@ def getGino():
     else:
         print("Failed to scrape ginopizza.hu...")
 
+# getszieg() ~ This function tries to scrape szigetelbar.hu
+def getSziget():
+    """
+    print("Trying to scrape szigetelbar.hu")
+    raw_html = simple_get("http://szigetetelbar.hu/index.php/pizza")
+
+    if(len(raw_html) > 0):
+        html = BeautifulSoup('html.parser', raw_html)
+        print(html)
+    else:
+        print("Failed to scrape szigetetelbar.hu")
+    """
+    # Pass for now as there is an error occuring when doing simple_get(...)
+    pass
+
 
 # Main
 def main():
@@ -117,7 +131,6 @@ def main():
     print()
 
     getGino()
-
+    getSziget()
 
 main()
-
