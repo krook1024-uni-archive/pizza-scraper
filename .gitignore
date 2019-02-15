@@ -1,3 +1,6 @@
+# Vim swappies
 *.swp
+
+# Python venv and cache files
 venv/*
 __pycache__/*
