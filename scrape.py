@@ -123,7 +123,7 @@ def getGino():
             writeDataToFile("gino.txt", name, "28", "Gino", price_28)
             writeDataToFile("gino.txt", name, "45", "Gino", price_45)
 
-        info("gino.txt written.")
+        info("gino.txt written.\n")
 
     else:
         err("Failed to scrape ginopizza.hu...")
@@ -157,7 +157,7 @@ def getKerekes():
                     writeDataToFile("kerekes.txt", name, "28", "Kerekes", price)
             else:
                 continue
-        info("kerekes.txt written.")
+        info("kerekes.txt written.\n")
     else:
         err("Failed to scrape kerekespizza.hu")
 
@@ -182,7 +182,7 @@ def getPecsi():
             price = re.sub(r"([0-9]{3,4})Ft", r"\1", price)
             writeDataToFile("pecsenye.txt", name, 30, "Pecsenye", price)
 
-        info("pecsenye.txt written.")
+        info("pecsenye.txt written.\n")
 
     else:
         err("Failed to scrape pecsenyesarok.hu")
