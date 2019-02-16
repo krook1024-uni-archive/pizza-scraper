@@ -4,3 +4,8 @@
 # Python venv and cache files
 venv/*
 __pycache__/*
+
+# Output files
+kerekes.txt
+gino.txt
+pecsenye.txt

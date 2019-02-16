@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+#
 #          Pizza scraper
 #   This software takes a bunch of websites and tries to scrape
 #   data off of them. For now it's "hardcoded", as in it contains
@@ -89,6 +91,13 @@ def writeDataToFile(filename, pizzaname, diameter, vendor, price):
         file.write(",")
         file.write(pizzaname)
         file.write("\n")
+
+
+def concatFiles(filenames, outf):
+    with open(outf, 'w') as outfile:
+        for fname in filenames:
+            with open(fname) as infile:
+                outfile.write(infile.read())
 
 # getGino() ~ this functions tries to parse ginopizza.hu to get pizza prices and names
 def getGino():
@@ -195,5 +204,9 @@ def main():
     getGino()
     getKerekes()
     getPecsi()
+
+    deleteWithWarning('pizza.txd')
+    concatFiles(['gino.txt', 'kerekes.txt', 'pecsenye.txt'], 'pizza.txt')
+    info('All outputs written to pizza.txt.')
 
 main()
