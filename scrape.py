@@ -14,7 +14,7 @@ from contextlib import closing
 from bs4        import BeautifulSoup
 
 program_name    = "pizza scraper"
-program_ver     = "0.0.2"
+program_ver     = "0.0.3"
 
 # Basic web scraping based on the following tutorial (as of 15/02/2018):
 # https://realpython.com/python-web-scraping-practical-introduction/
