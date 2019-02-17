@@ -205,7 +205,7 @@ def main():
     getKerekes()
     getPecsi()
 
-    deleteWithWarning('pizza.txd')
+    deleteWithWarning('pizza.txt')
     concatFiles(['gino.txt', 'kerekes.txt', 'pecsenye.txt'], 'pizza.txt')
     info('All outputs written to pizza.txt.')
 
